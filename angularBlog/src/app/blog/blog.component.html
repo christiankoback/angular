@@ -1,0 +1,26 @@
+<section id="sideMenu">
+	<ul class="blogNameMenu">
+		<li *ngFor="let blogTopic of blogMessages" [class.selected]="blogTopic.blogName === selectedBlog" (click)="blogSelected(blogTopic.blogName)">
+			<img class="blogLogo" id="{{blogTopic.blogName}}" name="{{blogTopic.blogName}}" src="{{blogTopic.blogIconLocation}}" alt="logo">
+		</li>
+	</ul>
+</section>
+
+<!--
+Assumption: - incoming message info is sorted by date already
+			- incoming data structure once converted into an object, is the same as seen in mock object 
+
+
+restructure this with actula DBase
+-->
+<section id="mainBlogArea" *ngIf="selectedBlog">
+	<ng-container *ngFor="let blogTopic of blogMessages" >
+		<ng-container *ngIf="blogTopic.blogName === selectedBlog" >
+			<section *ngFor="let message of blogTopic.messages">
+				<!--  <img class="personIcon" src="{{message.userID.image}}" alt="personLogo"> -->
+				{{message.message}}
+			</section>
+		</ng-container>
+	</ng-container>
+	
+</section>

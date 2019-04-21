@@ -1,0 +1,13 @@
+.pastProgrammingLanguages{
+	height:20vh;
+	width: 20vw;
+	max-height: 200px;
+	object-fit: contain;
+}
+#imageGrouping{
+	background-color: #CDCDCD;
+	margin: 0px 10px;
+	border-radius: 8px;
+	padding-top: 10px;
+	text-align: center;
+}

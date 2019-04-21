@@ -1,0 +1,44 @@
+#navMenu{
+	height: 20vh;
+	
+}
+#navOptions{
+	padding-top: 20px;
+}
+@media only screen and (max-width: 600px){
+	#navMenu{
+		height: 30px;
+	}
+	#navOptions{
+		padding-top: 20px;
+	}
+}
+#coolButtons{
+	position:absolute;
+	top: 25px;
+	right: 10px;
+}
+#coolButtons * {
+	margin-right: 5px;
+}
+#logo{
+	background-repeat: no-repeat;
+	float: left;
+	object-fit: contain;
+	height: inherit;
+}
+.menuOption{
+	padding: 0px 5px 0px 5px;
+	color: inherit;
+	text-decoration: none;
+}
+#signUp{
+	border:none;
+	background-color: white;
+	color: inherit;
+}
+#logIn{
+	background-color: #0000ee;
+	border: none;
+	color: white;
+}

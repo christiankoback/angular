@@ -1,0 +1,44 @@
+#sideMenu{
+	background-color: #B0B0B0;
+	position: static;
+	left: 0px;
+	top: static;
+	width: 80px;
+	min-height: 100px;
+	height:70vh;
+}
+.blogNameMenu {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	height: inherit;
+	width: inherit;
+}
+.blogNameMenu li{
+	color: #003171;	
+	height: 40px;
+	width: inherit;
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
+.blogNameMenu .selected{
+	background-color: #707070;
+}
+.blogLogo{
+	height: inherit;
+	width: inherit;
+	object-fit: contain;
+	margin: 0px;
+	padding: 0px;
+}
+#mainBlogArea{
+	position: absolute;
+	left: 80px;
+	top: 20vh;
+	background-image: "../../assets/images/blog/defaultBlogBackground.png";
+	object-fit: contain;
+	height: inherit;
+	background-repeat: repeat;
+	width: calc(100vw - 80px);
+}
