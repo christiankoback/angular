@@ -1,12 +1,30 @@
 <section id="navMenu">
 	<img id="logo" src="assets/images/menu/logo.png" alt="" >
 	<nav id="navOptions">
-		<ng-container *ngFor="let menuItem of menuList">
-			<a routerLink="/{{menuItem.name}}" class="menuOption" routerLinkActive="active">{{menuItem.name | titlecase}}</a>
+		<ng-container *ngFor="let menuItem of menuList" (onclick)="ChangeTextFormat(menuItem.name)">
+			<a routerLink="/{{menuItem.name}}" class="menuOption" routerLinkActive="active" (click)="ChangeTextFormat(menuItem.name)">
+				<ng-container
+				  *ngIf="menuItem.name === selectedMenuItem; then pageIsActive; else pageNotActive">
+				</ng-container>
+				<ng-template #pageIsActive>
+					{{menuItem.name | uppercase}}
+				</ng-template>
+				<ng-template #pageNotActive>
+					{{menuItem.name | titlecase}}
+				</ng-template>
+			</a>
 		</ng-container>
 	</nav>
 	<section id="coolButtons">
-		<button id="signUp">Sign Up</button>
-		<button id="logIn">Log In</button>
+		<button id="signUp" (click)="openSignupDialog()">Sign Up</button>
+		<button id="logIn" (click)="openLoginDialog()">Log In</button>
 	</section>
 </section>
+
+
+
+
+
+
+
+

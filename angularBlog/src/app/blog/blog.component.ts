@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BLOGMESSAGELIST } from './mock-blog';
-
+import { latestBlogMessages } from '../services/blogClasses';
+import { BlogMessageManagerService } from '../services/blog-message-manager.service';
 
 @Component({
   selector: 'app-blog',
@@ -9,14 +9,20 @@ import { BLOGMESSAGELIST } from './mock-blog';
 })
 export class BlogComponent implements OnInit {
 	selectedBlog: string;
-	blogMessages = BLOGMESSAGELIST;
-  constructor() { }
+	blogMessages: latestBlogMessages[];
+	isUserLoggedIn: boolean;
+  constructor(private blogManager: BlogMessageManagerService) { }
 
   ngOnInit() {
+	  this.getBlogMessages();
   }
   
   blogSelected(blogName: string){
 	this.selectedBlog = blogName;
   }
-
+	getBlogMessages():void{
+		//this.blogMessages = this.blogManager.getBlogMessages();
+		this.blogManager.getBlogMessages().subscribe(blogMessages => this.blogMessages = blogMessages);
+	}
+	
 }

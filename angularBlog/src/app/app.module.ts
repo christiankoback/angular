@@ -15,6 +15,8 @@ import { AboutpageModule } from './aboutpage/aboutpage.module';
 import { InterestspageModule } from './interestspage/interestspage.module';
 import { PagefooterComponent } from './pagefooter/pagefooter.component';
 import { BlogComponent } from './blog/blog.component';
+import { SignupModalComponent } from './pagemenu/signup-modal/signup-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { BlogComponent } from './blog/blog.component';
     InterestspageComponent,
 	PageNotFoundComponent,
 	PagefooterComponent,
-	BlogComponent
+	BlogComponent,
+	SignupModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+#leftDiv{
+	text-align:center;
+	
+}
+#rightDiv{
+	float:right;
+	
+}
+
+#pageFooter{
+	position: absolute;
+	height: 60px;
+	bottom: 5px;
+	width: 100vw;
+	vertical-align: text-bottom;
+	overflow:hidden;
+}
+
