@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatButtonModule } from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +18,8 @@ import { InterestspageModule } from './interestspage/interestspage.module';
 import { PagefooterComponent } from './pagefooter/pagefooter.component';
 import { BlogComponent } from './blog/blog.component';
 import { SignupModalComponent } from './pagemenu/signup-modal/signup-modal.component';
-
+import { LoginModalComponent } from './pagemenu/login-modal/login-modal.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,21 +28,31 @@ import { SignupModalComponent } from './pagemenu/signup-modal/signup-modal.compo
     HomepageComponent,
     AboutpageComponent,
     InterestspageComponent,
-	PageNotFoundComponent,
-	PagefooterComponent,
-	BlogComponent,
-	SignupModalComponent
+		PageNotFoundComponent,
+		PagefooterComponent,
+		BlogComponent,
+		SignupModalComponent,
+		LoginModalComponent
   ],
   imports: [
     BrowserModule,
+		BrowserAnimationsModule,
     AppRoutingModule,
-	FormsModule,
-	HomepageModule,
-	AboutpageModule,
-	InterestspageModule
+		FormsModule,
+		HomepageModule,
+		AboutpageModule,
+		InterestspageModule,
+		MatButtonModule,
+		ReactiveFormsModule,
+		MatFormFieldModule,
+		MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+	entryComponents:[
+		SignupModalComponent,
+		LoginModalComponent
+	]
 })
 
 

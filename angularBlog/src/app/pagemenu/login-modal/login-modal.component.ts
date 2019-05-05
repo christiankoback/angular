@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import { MatDialogRef} from '@angular/material';
+import {FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-login-modal',
@@ -7,9 +8,16 @@ import {MatDialog, MatDialogRef} from '@angular/material';
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent implements OnInit {
+	email = new FormControl('', [Validators.required, Validators.email]);
+	password = new FormControl('', [Validators.required,Validators.minLength(6)]);
+  constructor( private dialogRef: MatDialogRef<LoginModalComponent>) {}
 
-  constructor(public dialogRef: MatDialogRef<LoginModalComponent>) { }
-
+	getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' : this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+	getPassErrorMessage() {
+    return this.password.hasError('required') ? 'You must enter a value' : this.password.hasError('password') ? 'Not a valid password' : '';
+  }
   ngOnInit() {
   }
   
@@ -18,7 +26,7 @@ export class LoginModalComponent implements OnInit {
   }
   
   onLoginClick(): void {
-    this.dialogRef.close('completedLogin');
+    this.dialogRef.close();
   }
 
 }

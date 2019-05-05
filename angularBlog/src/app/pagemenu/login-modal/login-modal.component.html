@@ -1,2 +1,17 @@
-<button (click)="onCancelClick()">Cancel Login</button>
-<button (click)="onLoginClick()">Login</button>
+
+<h1 mat-dialog-title>Log In</h1>
+<mat-dialog-content >
+	<mat-form-field>
+		<input matInput placeholder="Enter your email" [formControl]="email" required>
+		<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput placeholder="Enter your password" [formControl]="password" required>
+		<mat-error *ngIf="password.invalid">{{getPassErrorMessage()}}</mat-error>
+	</mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button (click)="onCancelClick()">Cancel Login</button>
+	<button (click)="onLoginClick()">Login</button>
+</mat-dialog-actions>
+

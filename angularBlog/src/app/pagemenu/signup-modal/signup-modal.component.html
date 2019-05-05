@@ -1,2 +1,19 @@
-<button (click)="onCancelClick()">Cancel Sign Up</button>
-<button (click)="onSigninClick()">Sign Up</button>
+<h1 mat-dialog-title>Register</h1>
+<mat-dialog-content>
+	<mat-form-field>
+		<input matInput placeholder="Enter your email" [formControl]="email" required>
+		<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput placeholder="Enter your password" [formControl]="password" required>
+		<mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+	</mat-form-field>
+	<mat-form-field>
+		<input matInput placeholder="Re-enter your password" [formControl]="password2" required>
+		<mat-error *ngIf="password2.invalid">{{getErrorMessage()}}</mat-error>
+	</mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+	<button (click)="onCancelClick()">Cancel Sign Up</button>
+	<button (click)="onRegisterClick()">Register</button>
+</mat-dialog-actions>
