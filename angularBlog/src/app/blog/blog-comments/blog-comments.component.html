@@ -1,0 +1,17 @@
+
+<ng-container *ngIf="isUserLoggedIn else notLoggedIn">
+	<section id="blogInput">
+		<textarea rows="4" cols="50" id="newCommentBlock" maxlength="255">
+		</textarea>
+		<button id="submitNewComment">Comment Now!</button>
+	</section>
+</ng-container>
+<ng-template #notLoggedIn>
+<section id="blogInput">
+	<textarea rows="4" cols="50" id="newCommentBlock" maxlength="255" ng-disabled="true" >
+	</textarea>
+	<button id="submitNewComment" ng-disabled="true">Comment Now!</button>
+</section>
+
+
+</ng-template>

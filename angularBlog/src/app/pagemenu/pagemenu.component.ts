@@ -34,7 +34,7 @@ export class PagemenuComponent implements OnInit {
 			const dialogConfig = new MatDialogConfig();
 			dialogConfig.autoFocus = true;
 			dialogConfig.disableClose = true;
-			dialogConfig.width = '250px';
+			dialogConfig.width = '300px';
 			dialogConfig.hasBackdrop = true;
 			dialogConfig.position = { left: '40%' };
 			const logindialogRef = this.dialog.open(LoginModalComponent, dialogConfig);
@@ -53,7 +53,7 @@ export class PagemenuComponent implements OnInit {
 			const dialogConfig = new MatDialogConfig();
 			dialogConfig.autoFocus = true;
 			dialogConfig.disableClose = true;
-			dialogConfig.width = '250px';
+			dialogConfig.width = '300px';
 			dialogConfig.hasBackdrop = true;
 			dialogConfig.position = { left: '40%' };
 			const signindialogRef = this.dialog.open(SignupModalComponent, dialogConfig);

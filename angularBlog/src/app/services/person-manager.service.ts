@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { latestBlogMessages } from './blogClasses';
-import { BLOGMESSAGELIST } from './mock-blog';
+import { BlogPerson } from './blogClasses';
+import { MOCKPERSON } from './mock-person';
 
 
 @Injectable({
@@ -12,7 +12,7 @@ export class PersonManagerService {
 
   constructor() { }
   
-  getBlogMessages(): Observable<latestBlogMessages[]> {
-	return of(BLOGMESSAGELIST);
+  getPersonInfo(): Observable<BlogPerson> {
+		return of(MOCKPERSON);
   }	  
 }

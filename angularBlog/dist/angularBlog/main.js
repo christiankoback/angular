@@ -293,11 +293,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pagemenu_signup_modal_signup_modal_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./pagemenu/signup-modal/signup-modal.component */ "./src/app/pagemenu/signup-modal/signup-modal.component.ts");
 /* harmony import */ var _pagemenu_login_modal_login_modal_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./pagemenu/login-modal/login-modal.component */ "./src/app/pagemenu/login-modal/login-modal.component.ts");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _blog_blog_comments_blog_comments_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./blog/blog-comments/blog-comments.component */ "./src/app/blog/blog-comments/blog-comments.component.ts");
 
 
 
 
 
+
+
+//import {ErrorStateMatcher} from '@angular/material';
+//import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -329,7 +334,8 @@ var AppModule = /** @class */ (function () {
                 _pagefooter_pagefooter_component__WEBPACK_IMPORTED_MODULE_16__["PagefooterComponent"],
                 _blog_blog_component__WEBPACK_IMPORTED_MODULE_17__["BlogComponent"],
                 _pagemenu_signup_modal_signup_modal_component__WEBPACK_IMPORTED_MODULE_18__["SignupModalComponent"],
-                _pagemenu_login_modal_login_modal_component__WEBPACK_IMPORTED_MODULE_19__["LoginModalComponent"]
+                _pagemenu_login_modal_login_modal_component__WEBPACK_IMPORTED_MODULE_19__["LoginModalComponent"],
+                _blog_blog_comments_blog_comments_component__WEBPACK_IMPORTED_MODULE_21__["BlogCommentsComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -342,7 +348,13 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
                 _angular_material_form_field__WEBPACK_IMPORTED_MODULE_5__["MatFormFieldModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"]
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatOptionModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"] /*,
+                FormGroupDirective,
+                ErrorStateMatcher*/
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]],
@@ -359,6 +371,63 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/blog/blog-comments/blog-comments.component.css":
+/*!****************************************************************!*\
+  !*** ./src/app/blog/blog-comments/blog-comments.component.css ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "#blogInput{\r\n\tposition: absolute;\r\n\tz-index: 1;\r\n\tbottom: 0px;\r\n\theight: 10vh;\r\n\twidth: calc(100% - 5px);\r\n\tborder-top: 1px solid  midnightblue;\r\n\tbox-sizing: border-box;\r\n\t-moz-box-sizing: border-box;\r\n\t-webkit-box-sizing: border-box;\r\n}\r\n#newCommentBlock{\r\n\theight: inherit;\r\n\twidth: 100%;\r\n}\r\n#submitNewComment{\r\n\tposition: absolute;\r\n\tz-index: 3;\r\n\tbottom: 5px;\r\n\tright: 20px;\r\n\tbackground-color: blue;\r\n\tcolor: white;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy9ibG9nLWNvbW1lbnRzL2Jsb2ctY29tbWVudHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtDQUNDLGtCQUFrQjtDQUNsQixVQUFVO0NBQ1YsV0FBVztDQUNYLFlBQVk7Q0FDWix1QkFBdUI7Q0FDdkIsbUNBQW1DO0NBQ25DLHNCQUFzQjtDQUN0QiwyQkFBMkI7Q0FDM0IsOEJBQThCO0FBQy9CO0FBQ0E7Q0FDQyxlQUFlO0NBQ2YsV0FBVztBQUNaO0FBQ0E7Q0FDQyxrQkFBa0I7Q0FDbEIsVUFBVTtDQUNWLFdBQVc7Q0FDWCxXQUFXO0NBQ1gsc0JBQXNCO0NBQ3RCLFlBQVk7QUFDYiIsImZpbGUiOiJzcmMvYXBwL2Jsb2cvYmxvZy1jb21tZW50cy9ibG9nLWNvbW1lbnRzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjYmxvZ0lucHV0e1xyXG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuXHR6LWluZGV4OiAxO1xyXG5cdGJvdHRvbTogMHB4O1xyXG5cdGhlaWdodDogMTB2aDtcclxuXHR3aWR0aDogY2FsYygxMDAlIC0gNXB4KTtcclxuXHRib3JkZXItdG9wOiAxcHggc29saWQgIG1pZG5pZ2h0Ymx1ZTtcclxuXHRib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG5cdC1tb3otYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuXHQtd2Via2l0LWJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuI25ld0NvbW1lbnRCbG9ja3tcclxuXHRoZWlnaHQ6IGluaGVyaXQ7XHJcblx0d2lkdGg6IDEwMCU7XHJcbn1cclxuI3N1Ym1pdE5ld0NvbW1lbnR7XHJcblx0cG9zaXRpb246IGFic29sdXRlO1xyXG5cdHotaW5kZXg6IDM7XHJcblx0Ym90dG9tOiA1cHg7XHJcblx0cmlnaHQ6IDIwcHg7XHJcblx0YmFja2dyb3VuZC1jb2xvcjogYmx1ZTtcclxuXHRjb2xvcjogd2hpdGU7XHJcbn1cclxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/blog/blog-comments/blog-comments.component.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/blog/blog-comments/blog-comments.component.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<ng-container *ngIf=\"isUserLoggedIn else notLoggedIn\">\n\t<section id=\"blogInput\">\n\t\t<textarea rows=\"4\" cols=\"50\" id=\"newCommentBlock\" maxlength=\"255\">\n\t\t</textarea>\n\t\t<button id=\"submitNewComment\">Comment Now!</button>\n\t</section>\n</ng-container>\n<ng-template #notLoggedIn>\n<section id=\"blogInput\">\n\t<textarea rows=\"4\" cols=\"50\" id=\"newCommentBlock\" maxlength=\"255\" ng-disabled=\"true\" >\n\t</textarea>\n\t<button id=\"submitNewComment\" ng-disabled=\"true\">Comment Now!</button>\n</section>\n\n\n</ng-template>"
+
+/***/ }),
+
+/***/ "./src/app/blog/blog-comments/blog-comments.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/blog/blog-comments/blog-comments.component.ts ***!
+  \***************************************************************/
+/*! exports provided: BlogCommentsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BlogCommentsComponent", function() { return BlogCommentsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var BlogCommentsComponent = /** @class */ (function () {
+    function BlogCommentsComponent() {
+        this.isUserLoggedIn = false;
+    }
+    BlogCommentsComponent.prototype.ngOnInit = function () {
+    };
+    BlogCommentsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'BlogComments',
+            template: __webpack_require__(/*! ./blog-comments.component.html */ "./src/app/blog/blog-comments/blog-comments.component.html"),
+            styles: [__webpack_require__(/*! ./blog-comments.component.css */ "./src/app/blog/blog-comments/blog-comments.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], BlogCommentsComponent);
+    return BlogCommentsComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/blog/blog.component.css":
 /*!*****************************************!*\
   !*** ./src/app/blog/blog.component.css ***!
@@ -366,7 +435,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#sideMenu{\r\n\tbackground-color: #B0B0B0;\r\n\tposition: static;\r\n\tleft: 0px;\r\n\ttop: static;\r\n\twidth: 80px;\r\n\tmin-height: 100px;\r\n\theight:70vh;\r\n}\r\n.blogNameMenu {\r\n\tpadding: 0px;\r\n\tmargin: 0px;\r\n\tborder: none;\r\n\theight: inherit;\r\n\twidth: inherit;\r\n}\r\n.blogNameMenu li{\r\n\tcolor: #003171;\t\r\n\theight: 40px;\r\n\twidth: inherit;\r\n\tdisplay: inline-block;\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n}\r\n.blogNameMenu .selected{\r\n\tbackground-color: #707070;\r\n}\r\n.blogLogo{\r\n\theight: inherit;\r\n\twidth: inherit;\r\n\t-o-object-fit: contain;\r\n\t   object-fit: contain;\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n}\r\n#mainBlogArea{\r\n\tposition: absolute;\r\n\tleft: 80px;\r\n\ttop: 20vh;\r\n\theight: 70vh;\r\n\twidth: calc(100% - 80px);\r\n\tborder: 10px solid grey;\r\n\tbox-shadow: inset 0 1px 0 blue, 0 1px 0 blue;\r\n\tbox-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n}\r\n#blogInput{\r\n\tposition: absolute;\r\n\tz-index: 1;\r\n\tbottom: 0px;\r\n\theight: 10vh;\r\n\twidth: calc(100% - 5px);\r\n\tborder-top: 1px solid  midnightblue;\r\n\tbox-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n}\r\n#newCommentBlock{\r\n\theight: inherit;\r\n\twidth: 100%;\r\n}\r\n#submitNewComment{\r\n\tposition: absolute;\r\n\tz-index: 3;\r\n\tbottom: 5px;\r\n\tright: 20px;\r\n\tbackground-color: blue;\r\n\tcolor: white;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy9ibG9nLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyx5QkFBeUI7Q0FDekIsZ0JBQWdCO0NBQ2hCLFNBQVM7Q0FDVCxXQUFXO0NBQ1gsV0FBVztDQUNYLGlCQUFpQjtDQUNqQixXQUFXO0FBQ1o7QUFDQTtDQUNDLFlBQVk7Q0FDWixXQUFXO0NBQ1gsWUFBWTtDQUNaLGVBQWU7Q0FDZixjQUFjO0FBQ2Y7QUFDQTtDQUNDLGNBQWM7Q0FDZCxZQUFZO0NBQ1osY0FBYztDQUNkLHFCQUFxQjtDQUNyQixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyx5QkFBeUI7QUFDMUI7QUFDQTtDQUNDLGVBQWU7Q0FDZixjQUFjO0NBQ2Qsc0JBQW1CO0lBQW5CLG1CQUFtQjtDQUNuQixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxrQkFBa0I7Q0FDbEIsVUFBVTtDQUNWLFNBQVM7Q0FDVCxZQUFZO0NBQ1osd0JBQXdCO0NBQ3hCLHVCQUF1QjtDQUN2Qiw0Q0FBNEM7Q0FDNUMsc0JBQXNCO0lBQ25CLDJCQUEyQjtJQUMzQiw4QkFBOEI7QUFDbEM7QUFDQTtDQUNDLGtCQUFrQjtDQUNsQixVQUFVO0NBQ1YsV0FBVztDQUNYLFlBQVk7Q0FDWix1QkFBdUI7Q0FDdkIsbUNBQW1DO0NBQ25DLHNCQUFzQjtJQUNuQiwyQkFBMkI7SUFDM0IsOEJBQThCO0FBQ2xDO0FBQ0E7Q0FDQyxlQUFlO0NBQ2YsV0FBVztBQUNaO0FBQ0E7Q0FDQyxrQkFBa0I7Q0FDbEIsVUFBVTtDQUNWLFdBQVc7Q0FDWCxXQUFXO0NBQ1gsc0JBQXNCO0NBQ3RCLFlBQVk7QUFDYiIsImZpbGUiOiJzcmMvYXBwL2Jsb2cvYmxvZy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3NpZGVNZW51e1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICNCMEIwQjA7XHJcblx0cG9zaXRpb246IHN0YXRpYztcclxuXHRsZWZ0OiAwcHg7XHJcblx0dG9wOiBzdGF0aWM7XHJcblx0d2lkdGg6IDgwcHg7XHJcblx0bWluLWhlaWdodDogMTAwcHg7XHJcblx0aGVpZ2h0Ojcwdmg7XHJcbn1cclxuLmJsb2dOYW1lTWVudSB7XHJcblx0cGFkZGluZzogMHB4O1xyXG5cdG1hcmdpbjogMHB4O1xyXG5cdGJvcmRlcjogbm9uZTtcclxuXHRoZWlnaHQ6IGluaGVyaXQ7XHJcblx0d2lkdGg6IGluaGVyaXQ7XHJcbn1cclxuLmJsb2dOYW1lTWVudSBsaXtcclxuXHRjb2xvcjogIzAwMzE3MTtcdFxyXG5cdGhlaWdodDogNDBweDtcclxuXHR3aWR0aDogaW5oZXJpdDtcclxuXHRkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcblx0bWFyZ2luOiAwcHg7XHJcblx0cGFkZGluZzogMHB4O1xyXG59XHJcbi5ibG9nTmFtZU1lbnUgLnNlbGVjdGVke1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICM3MDcwNzA7XHJcbn1cclxuLmJsb2dMb2dve1xyXG5cdGhlaWdodDogaW5oZXJpdDtcclxuXHR3aWR0aDogaW5oZXJpdDtcclxuXHRvYmplY3QtZml0OiBjb250YWluO1xyXG5cdG1hcmdpbjogMHB4O1xyXG5cdHBhZGRpbmc6IDBweDtcclxufVxyXG4jbWFpbkJsb2dBcmVhe1xyXG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuXHRsZWZ0OiA4MHB4O1xyXG5cdHRvcDogMjB2aDtcclxuXHRoZWlnaHQ6IDcwdmg7XHJcblx0d2lkdGg6IGNhbGMoMTAwJSAtIDgwcHgpO1xyXG5cdGJvcmRlcjogMTBweCBzb2xpZCBncmV5O1xyXG5cdGJveC1zaGFkb3c6IGluc2V0IDAgMXB4IDAgYmx1ZSwgMCAxcHggMCBibHVlO1xyXG5cdGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgICAtbW96LWJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgICAtd2Via2l0LWJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuI2Jsb2dJbnB1dHtcclxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XHJcblx0ei1pbmRleDogMTtcclxuXHRib3R0b206IDBweDtcclxuXHRoZWlnaHQ6IDEwdmg7XHJcblx0d2lkdGg6IGNhbGMoMTAwJSAtIDVweCk7XHJcblx0Ym9yZGVyLXRvcDogMXB4IHNvbGlkICBtaWRuaWdodGJsdWU7XHJcblx0Ym94LXNpemluZzogYm9yZGVyLWJveDtcclxuICAgIC1tb3otYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICAgIC13ZWJraXQtYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG4jbmV3Q29tbWVudEJsb2Nre1xyXG5cdGhlaWdodDogaW5oZXJpdDtcclxuXHR3aWR0aDogMTAwJTtcclxufVxyXG4jc3VibWl0TmV3Q29tbWVudHtcclxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XHJcblx0ei1pbmRleDogMztcclxuXHRib3R0b206IDVweDtcclxuXHRyaWdodDogMjBweDtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiBibHVlO1xyXG5cdGNvbG9yOiB3aGl0ZTtcclxufVxyXG4iXX0= */"
+module.exports = "#sideMenu{\r\n\tbackground-color: #B0B0B0;\r\n\tposition: static;\r\n\tleft: 0px;\r\n\ttop: static;\r\n\twidth: 80px;\r\n\tmin-height: 100px;\r\n\theight:70vh;\r\n}\r\n.blogNameMenu {\r\n\tpadding: 0px;\r\n\tmargin: 0px;\r\n\tborder: none;\r\n\theight: inherit;\r\n\twidth: inherit;\r\n}\r\n.blogNameMenu li{\r\n\tcolor: #003171;\t\r\n\theight: 40px;\r\n\twidth: inherit;\r\n\tdisplay: inline-block;\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n}\r\n.blogNameMenu .selected{\r\n\tbackground-color: #707070;\r\n}\r\n.blogLogo{\r\n\theight: inherit;\r\n\twidth: inherit;\r\n\t-o-object-fit: contain;\r\n\t   object-fit: contain;\r\n\tmargin: 0px;\r\n\tpadding: 0px;\r\n}\r\n#mainBlogArea{\r\n\tposition: absolute;\r\n\tleft: 80px;\r\n\ttop: 20vh;\r\n\theight: 70vh;\r\n\twidth: calc(100% - 80px);\r\n\tborder: 10px solid grey;\r\n\tbox-shadow: inset 0 1px 0 blue, 0 1px 0 blue;\r\n\tbox-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYmxvZy9ibG9nLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQyx5QkFBeUI7Q0FDekIsZ0JBQWdCO0NBQ2hCLFNBQVM7Q0FDVCxXQUFXO0NBQ1gsV0FBVztDQUNYLGlCQUFpQjtDQUNqQixXQUFXO0FBQ1o7QUFDQTtDQUNDLFlBQVk7Q0FDWixXQUFXO0NBQ1gsWUFBWTtDQUNaLGVBQWU7Q0FDZixjQUFjO0FBQ2Y7QUFDQTtDQUNDLGNBQWM7Q0FDZCxZQUFZO0NBQ1osY0FBYztDQUNkLHFCQUFxQjtDQUNyQixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyx5QkFBeUI7QUFDMUI7QUFDQTtDQUNDLGVBQWU7Q0FDZixjQUFjO0NBQ2Qsc0JBQW1CO0lBQW5CLG1CQUFtQjtDQUNuQixXQUFXO0NBQ1gsWUFBWTtBQUNiO0FBQ0E7Q0FDQyxrQkFBa0I7Q0FDbEIsVUFBVTtDQUNWLFNBQVM7Q0FDVCxZQUFZO0NBQ1osd0JBQXdCO0NBQ3hCLHVCQUF1QjtDQUN2Qiw0Q0FBNEM7Q0FDNUMsc0JBQXNCO0lBQ25CLDJCQUEyQjtJQUMzQiw4QkFBOEI7QUFDbEMiLCJmaWxlIjoic3JjL2FwcC9ibG9nL2Jsb2cuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIiNzaWRlTWVudXtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjQjBCMEIwO1xyXG5cdHBvc2l0aW9uOiBzdGF0aWM7XHJcblx0bGVmdDogMHB4O1xyXG5cdHRvcDogc3RhdGljO1xyXG5cdHdpZHRoOiA4MHB4O1xyXG5cdG1pbi1oZWlnaHQ6IDEwMHB4O1xyXG5cdGhlaWdodDo3MHZoO1xyXG59XHJcbi5ibG9nTmFtZU1lbnUge1xyXG5cdHBhZGRpbmc6IDBweDtcclxuXHRtYXJnaW46IDBweDtcclxuXHRib3JkZXI6IG5vbmU7XHJcblx0aGVpZ2h0OiBpbmhlcml0O1xyXG5cdHdpZHRoOiBpbmhlcml0O1xyXG59XHJcbi5ibG9nTmFtZU1lbnUgbGl7XHJcblx0Y29sb3I6ICMwMDMxNzE7XHRcclxuXHRoZWlnaHQ6IDQwcHg7XHJcblx0d2lkdGg6IGluaGVyaXQ7XHJcblx0ZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG5cdG1hcmdpbjogMHB4O1xyXG5cdHBhZGRpbmc6IDBweDtcclxufVxyXG4uYmxvZ05hbWVNZW51IC5zZWxlY3RlZHtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjNzA3MDcwO1xyXG59XHJcbi5ibG9nTG9nb3tcclxuXHRoZWlnaHQ6IGluaGVyaXQ7XHJcblx0d2lkdGg6IGluaGVyaXQ7XHJcblx0b2JqZWN0LWZpdDogY29udGFpbjtcclxuXHRtYXJnaW46IDBweDtcclxuXHRwYWRkaW5nOiAwcHg7XHJcbn1cclxuI21haW5CbG9nQXJlYXtcclxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XHJcblx0bGVmdDogODBweDtcclxuXHR0b3A6IDIwdmg7XHJcblx0aGVpZ2h0OiA3MHZoO1xyXG5cdHdpZHRoOiBjYWxjKDEwMCUgLSA4MHB4KTtcclxuXHRib3JkZXI6IDEwcHggc29saWQgZ3JleTtcclxuXHRib3gtc2hhZG93OiBpbnNldCAwIDFweCAwIGJsdWUsIDAgMXB4IDAgYmx1ZTtcclxuXHRib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gICAgLW1vei1ib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gICAgLXdlYmtpdC1ib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG59XHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -377,7 +446,7 @@ module.exports = "#sideMenu{\r\n\tbackground-color: #B0B0B0;\r\n\tposition: stat
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"sideMenu\">\n\t<ul class=\"blogNameMenu\">\n\t\t<li *ngFor=\"let blogTopic of blogMessages\" [class.selected]=\"blogTopic.blogName === selectedBlog\" (click)=\"blogSelected(blogTopic.blogName)\">\n\t\t\t<img class=\"blogLogo\" id=\"{{blogTopic.blogName}}\" name=\"{{blogTopic.blogName}}\" src=\"{{blogTopic.blogIconLocation}}\" alt=\"logo\">\n\t\t</li>\n\t</ul>\n</section>\n\n<!--\nAssumption: - incoming message info is sorted by date already\n\t\t\t- incoming data structure once converted into an object, is the same as seen in mock object \n\n\nrestructure this with actula DBase\n-->\n<section id=\"mainBlogArea\" >\n\t<section id=\"blogMessageSection\">\n\t\t<ng-container *ngIf=\"selectedBlog\" >\n\t\t\t<ng-container *ngFor=\"let blogTopic of blogMessages\" >\n\t\t\t\t<ng-container *ngIf=\"blogTopic.blogName === selectedBlog\" >\n\t\t\t\t\t<section *ngFor=\"let message of blogTopic.messages\">\n\t\t\t\t\t\t<!--  <img class=\"personIcon\" src=\"{{message.userID.image}}\" alt=\"personLogo\"> -->\n\t\t\t\t\t\t{{message.message}}\n\t\t\t\t\t</section>\n\t\t\t\t</ng-container>\n\t\t\t</ng-container>\n\t\t</ng-container>\n\t</section>\n\t<section id=\"blogInput\">\n\t\t<textarea rows=\"4\" cols=\"50\" id=\"newCommentBlock\" maxlength=\"255\">\n\t\t</textarea>\n\t\t<button id=\"submitNewComment\">Comment Now!</button>\n\t</section>\n</section>\n\n\n<!--   TO DO: set up database & database calls\n\n\n\n<ng-container\n  *ngIf='message.userID.image === \"\"; then userHasImage; else userHasNoImage'>\n</ng-container>\n<ng-template #userHasImage>\n\t<img class=\"personIcon\" src=\"{{message.userID.image}}\" alt=\"personLogo\">\n</ng-template>\n<ng-template #userHasNoImage>\n\t<img class=\"personIcon\" src=\"../../assets/images/blog/defaultPerson.png\" alt=\"personLogo\">\n</ng-template>\n\n-->"
+module.exports = "<section id=\"sideMenu\">\n\t<ul class=\"blogNameMenu\">\n\t\t<li *ngFor=\"let blogTopic of blogMessages\" [class.selected]=\"blogTopic.blogName === selectedBlog\" (click)=\"blogSelected(blogTopic.blogName)\">\n\t\t\t<img class=\"blogLogo\" id=\"{{blogTopic.blogName}}\" name=\"{{blogTopic.blogName}}\" src=\"{{blogTopic.blogIconLocation}}\" alt=\"logo\">\n\t\t</li>\n\t</ul>\n</section>\n\n<!--\nAssumption: - incoming message info is sorted by date already\n\t\t\t- incoming data structure once converted into an object, is the same as seen in mock object \n\n\nrestructure this with actula DBase\n-->\n<section id=\"mainBlogArea\" >\n\t<section id=\"blogMessageSection\">\n\t\t<ng-container *ngIf=\"selectedBlog\" >\n\t\t\t<ng-container *ngFor=\"let blogTopic of blogMessages\" >\n\t\t\t\t<ng-container *ngIf=\"blogTopic.blogName === selectedBlog\" >\n\t\t\t\t\t<section *ngFor=\"let message of blogTopic.messages\">\n\t\t\t\t\t\t<!--  <img class=\"personIcon\" src=\"{{message.userID.image}}\" alt=\"personLogo\"> -->\n\t\t\t\t\t\t{{message.message}}\n\t\t\t\t\t</section>\n\t\t\t\t</ng-container>\n\t\t\t</ng-container>\n\t\t</ng-container>\n\t</section>\n\t<BlogComments></BlogComments>\n\t\n</section>\n\n\n<!--   TO DO: set up database & database calls\n\n\n\n<ng-container\n  *ngIf='message.userID.image === \"\"; then userHasImage; else userHasNoImage'>\n</ng-container>\n<ng-template #userHasImage>\n\t<img class=\"personIcon\" src=\"{{message.userID.image}}\" alt=\"personLogo\">\n</ng-template>\n<ng-template #userHasNoImage>\n\t<img class=\"personIcon\" src=\"../../assets/images/blog/defaultPerson.png\" alt=\"personLogo\">\n</ng-template>\n\n-->"
 
 /***/ }),
 
@@ -857,7 +926,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<h1 mat-dialog-title>Log In</h1>\n<mat-dialog-content >\n\t<mat-form-field>\n\t\t<input matInput placeholder=\"Enter your email\" [formControl]=\"email\" required>\n\t\t<mat-error *ngIf=\"email.invalid\">{{getErrorMessage()}}</mat-error>\n\t</mat-form-field>\n\t<mat-form-field>\n\t\t<input matInput placeholder=\"Enter your password\" [formControl]=\"password\" required>\n\t\t<mat-error *ngIf=\"password.invalid\">{{getPassErrorMessage()}}</mat-error>\n\t</mat-form-field>\n</mat-dialog-content>\n<mat-dialog-actions>\n\t<button (click)=\"onCancelClick()\">Cancel Login</button>\n\t<button (click)=\"onLoginClick()\">Login</button>\n</mat-dialog-actions>\n\n"
+module.exports = "\n<h1 mat-dialog-title>Log In</h1>\n<form [formGroup]=\"loginForm\">\n<mat-dialog-content >\n\t<mat-form-field  [floatLabel]=\"loginForm.value.floatLabel\">\n\t\t<mat-label>Enter your email</mat-label>\n\t\t<input matInput [formControl]=\"email\" required>\n\t\t<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>\n\t\t<!-- <mat-error *ngIf=\"email.invalid\">{{getErrorMessage()}}</mat-error> -->\n\t</mat-form-field>\n\t<mat-form-field [floatLabel]=\"loginForm.value.floatLabel\">\n\t\t<mat-label>Enter your password</mat-label>\n\t\t<input matInput type=\"password\" [formControl]=\"password\" required>\n\t\t<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>\n\t\t<!-- <mat-error *ngIf=\"password.invalid\">{{getPassErrorMessage()}}</mat-error> -->\n\t</mat-form-field>\n</mat-dialog-content>\n<mat-dialog-actions>\n\t<button (click)=\"onCancelClick()\">Cancel Login</button>\n\t<button (click)=\"onLoginClick()\">Login</button>\n</mat-dialog-actions>\n</form>\n"
 
 /***/ }),
 
@@ -880,22 +949,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginModalComponent = /** @class */ (function () {
-    function LoginModalComponent(dialogRef) {
+    //private formSubmitAttempt: boolean;
+    /*
+    email = new FormControl('', [Validators.required, Validators.email]);
+    password = new FormControl('', [Validators.required,Validators.minLength(6)]);
+    
+    */
+    function LoginModalComponent(fb, dialogRef) {
         this.dialogRef = dialogRef;
-        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]);
-        this.password = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(6)]);
+        this.loginForm = fb.group({
+            email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]],
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[a-zA-Z]+$')]]
+        });
+        //private authService: AuthService
     }
     LoginModalComponent.prototype.getErrorMessage = function () {
-        return this.email.hasError('required') ? 'You must enter a value' : this.email.hasError('email') ? 'Not a valid email' : '';
+        //return this.email.hasError('required') ? 'You must enter a value' : this.email.hasError('email') ? 'Not a valid email' : '';
     };
     LoginModalComponent.prototype.getPassErrorMessage = function () {
-        return this.password.hasError('required') ? 'You must enter a value' : this.password.hasError('password') ? 'Not a valid password' : '';
+        //return this.password.hasError('required') ? 'You must enter a value' : this.password.hasError('password') ? 'Not a valid password' : '';
     };
     LoginModalComponent.prototype.ngOnInit = function () {
     };
     LoginModalComponent.prototype.onCancelClick = function () {
         this.dialogRef.close('cancelLogin');
     };
+    /*
+  isFieldInvalid(field: string) { // {6}
+    return (
+      (!this.form.get(field).valid && this.form.get(field).touched) ||
+      (this.form.get(field).untouched && this.formSubmitAttempt)
+    );
+  }
+    */
     LoginModalComponent.prototype.onLoginClick = function () {
         this.dialogRef.close();
     };
@@ -905,7 +991,7 @@ var LoginModalComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login-modal.component.html */ "./src/app/pagemenu/login-modal/login-modal.component.html"),
             styles: [__webpack_require__(/*! ./login-modal.component.css */ "./src/app/pagemenu/login-modal/login-modal.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]])
     ], LoginModalComponent);
     return LoginModalComponent;
 }());
@@ -977,7 +1063,7 @@ var PagemenuComponent = /** @class */ (function () {
             var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogConfig"]();
             dialogConfig.autoFocus = true;
             dialogConfig.disableClose = true;
-            dialogConfig.width = '250px';
+            dialogConfig.width = '300px';
             dialogConfig.hasBackdrop = true;
             dialogConfig.position = { left: '40%' };
             var logindialogRef = this.dialog.open(_login_modal_login_modal_component__WEBPACK_IMPORTED_MODULE_5__["LoginModalComponent"], dialogConfig);
@@ -994,7 +1080,7 @@ var PagemenuComponent = /** @class */ (function () {
             var dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialogConfig"]();
             dialogConfig.autoFocus = true;
             dialogConfig.disableClose = true;
-            dialogConfig.width = '250px';
+            dialogConfig.width = '300px';
             dialogConfig.hasBackdrop = true;
             dialogConfig.position = { left: '40%' };
             var signindialogRef = this.dialog.open(_signup_modal_signup_modal_component__WEBPACK_IMPORTED_MODULE_4__["SignupModalComponent"], dialogConfig);
@@ -1040,7 +1126,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h1 mat-dialog-title>Register</h1>\n<mat-dialog-content>\n\t<mat-form-field>\n\t\t<input matInput placeholder=\"Enter your email\" [formControl]=\"email\" required>\n\t\t<mat-error *ngIf=\"email.invalid\">{{getErrorMessage()}}</mat-error>\n\t</mat-form-field>\n\t<mat-form-field>\n\t\t<input matInput placeholder=\"Enter your password\" [formControl]=\"password\" required>\n\t\t<mat-error *ngIf=\"password.invalid\">{{getErrorMessage()}}</mat-error>\n\t</mat-form-field>\n\t<mat-form-field>\n\t\t<input matInput placeholder=\"Re-enter your password\" [formControl]=\"password2\" required>\n\t\t<mat-error *ngIf=\"password2.invalid\">{{getErrorMessage()}}</mat-error>\n\t</mat-form-field>\n</mat-dialog-content>\n<mat-dialog-actions>\n\t<button (click)=\"onCancelClick()\">Cancel Sign Up</button>\n\t<button (click)=\"onRegisterClick()\">Register</button>\n</mat-dialog-actions>"
+module.exports = "<h1 mat-dialog-title>Register</h1>\n<form [formGroup]=\"registerForm\">\n\t<mat-dialog-content>\n\t\t<mat-form-field [floatLabel]=\"registerForm.value.floatLabel\" >\n\t\t\t<mat-label>Enter your email</mat-label>\n\t\t\t<input matInput formControlName=\"email\" name=\"email\" required>\n\t\t\t<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>\n\t\t\t<!-- <mat-error *ngIf=\"email.invalid\">{{getErrorMessage()}}</mat-error>  -->\n\n\t\t</mat-form-field>\n\t\t<mat-form-field [floatLabel]=\"registerForm.value.floatLabel\">\n\t\t\t<mat-label>Enter your password</mat-label>\n\t\t\t<input matInput type=\"password\" formControlName=\"password\" required>\n\t\t\t<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>\n\t\t\t<!--  <mat-error *ngIf=\"password.invalid\">{{getErrorMessage()}}</mat-error>  -->\n\t\t</mat-form-field>\n\t\t<mat-form-field [floatLabel]=\"registerForm.value.floatLabel\">\n\t\t\t<mat-label>Re-enter your password</mat-label>\n\t\t\t<input matInput type=\"password\" formControlName=\"password2\" required>\n\t\t\t<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>\n\t\t\t<!-- \n\t\t\t[errorStateMatcher]=\"CrossFieldErrorMatcher\"\n\t\t\t\n\t\t\t<mat-error *ngIf=\"registerForm.hasError('passwords do not match')\">\n\t\t\tPasswords Do Not Match!!!\n\t\t\t</mat-error>\n\t\t\t-->\n\t\t\t<!--  <mat-error *ngIf=\"password2.invalid\">{{getErrorMessage()}}</mat-error>  -->\n\t\t</mat-form-field>\n\t</mat-dialog-content>\n\t<mat-dialog-actions>\n\t\t<button (click)=\"onCancelClick()\">Cancel Sign Up</button>\n\t\t<button (click)=\"onRegisterClick()\">Register</button>\n\t</mat-dialog-actions>\n</form>"
 
 /***/ }),
 
@@ -1062,21 +1148,44 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+//import {ErrorStateMatcher} from '@angular/material';
+//import { AuthService } from './../auth/auth.service';
 var SignupModalComponent = /** @class */ (function () {
-    function SignupModalComponent(dialogRef) {
+    //private formSubmitAttempt: boolean;
+    //errorMatcher = new CrossFieldErrorMatcher();
+    /*
+    email = new FormControl('', [Validators.required, Validators.email]);
+    pwd = new FormControl('', [Validators.required,Validators.minLength(6)]);
+    pwd2 = new FormControl('', [Validators.required,Validators.minLength(6)]);
+    */
+    function SignupModalComponent(fb, dialogRef) {
         this.dialogRef = dialogRef;
-        this.email = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]);
-        this.pwd = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(6)]);
-        this.pwd2 = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].minLength(6)]);
+        this.registerForm = fb.group({
+            email: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]],
+            password: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[a-zA-Z]+$')]],
+            password2: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].pattern('^[a-zA-Z]+$')]],
+        });
+        //private authService: AuthService
+        /*
+        this.registerForm = fb.group({
+            email:['', [Validators.required, Validators.email] ],
+            password:['',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+            password2:['',[Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+        },{
+            validator: this.passwordValidator
+        });
+        */
     }
     SignupModalComponent.prototype.getErrorMessage = function () {
-        return this.email.hasError('required') ? 'You must enter a value' : this.email.hasError('email') ? 'Not a valid email' : '';
+        //return this.email.hasError('required') ? 'You must enter a value' : this.email.hasError('email') ? 'Not a valid email' : '';
+        //let stringtest: string = this.registerForm.value == "chris@fun.ca" ? 'it matches' : 'email is:' + this.registerForm.value;
+        //return stringtest;
     };
     SignupModalComponent.prototype.getPassErrorMessage = function () {
-        return this.pwd.hasError('required') ? 'You must enter a value' : this.pwd.hasError('password') ? 'Not a valid password' : '';
+        //return this.pwd.hasError('required') ? 'You must enter a value' : this.pwd.hasError('password') ? 'Not a valid password' : '';
     };
     SignupModalComponent.prototype.getPass2ErrorMessage = function () {
-        return this.pwd.hasError('required') ? 'You must enter a value' : this.pwd.hasError('password') ? 'Not a valid password' : '';
+        //return this.pwd.hasError('required') ? 'You must enter a value' : this.pwd.hasError('password') ? 'Not a valid password' : '';
     };
     SignupModalComponent.prototype.ngOnInit = function () {
     };
@@ -1085,14 +1194,35 @@ var SignupModalComponent = /** @class */ (function () {
     };
     SignupModalComponent.prototype.onRegisterClick = function () {
         this.dialogRef.close('completedSignup');
+        /*
+        if(this.registerForm.valid){
+      alert('User form is valid!!')
+            
+    } else {
+      alert('User form is not valid!!')
+    }
+        */
     };
     SignupModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-signup-modal',
             template: __webpack_require__(/*! ./signup-modal.component.html */ "./src/app/pagemenu/signup-modal/signup-modal.component.html"),
             styles: [__webpack_require__(/*! ./signup-modal.component.css */ "./src/app/pagemenu/signup-modal/signup-modal.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]])
+        })
+        /*
+        class CrossFieldErrorMatcher implements ErrorStateMatcher {
+            isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null):boolean{
+                return control.dirty && form.invalid;
+            }
+        }
+        
+        export const passwordMatchValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null => {
+          return formGroup.get('password').value === formGroup.get('password2').value ?
+            null : { 'passwordMismatch': true };
+        }
+        */
+        ,
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]])
     ], SignupModalComponent);
     return SignupModalComponent;
 }());

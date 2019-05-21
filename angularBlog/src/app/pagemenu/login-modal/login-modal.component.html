@@ -1,17 +1,22 @@
 
 <h1 mat-dialog-title>Log In</h1>
+<form [formGroup]="loginForm">
 <mat-dialog-content >
-	<mat-form-field>
-		<input matInput placeholder="Enter your email" [formControl]="email" required>
-		<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+	<mat-form-field  [floatLabel]="loginForm.value.floatLabel">
+		<mat-label>Enter your email</mat-label>
+		<input matInput [formControl]="email" required>
+		<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+		<!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
 	</mat-form-field>
-	<mat-form-field>
-		<input matInput placeholder="Enter your password" [formControl]="password" required>
-		<mat-error *ngIf="password.invalid">{{getPassErrorMessage()}}</mat-error>
+	<mat-form-field [floatLabel]="loginForm.value.floatLabel">
+		<mat-label>Enter your password</mat-label>
+		<input matInput type="password" [formControl]="password" required>
+		<mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+		<!-- <mat-error *ngIf="password.invalid">{{getPassErrorMessage()}}</mat-error> -->
 	</mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
 	<button (click)="onCancelClick()">Cancel Login</button>
 	<button (click)="onLoginClick()">Login</button>
 </mat-dialog-actions>
-
+</form>

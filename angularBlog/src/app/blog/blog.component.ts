@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { latestBlogMessages } from '../services/blogClasses';
 import { BlogMessageManagerService } from '../services/blog-message-manager.service';
+import { BlogCommentsComponent } from './blog-comments/blog-comments.component';
+
 
 @Component({
   selector: 'app-blog',

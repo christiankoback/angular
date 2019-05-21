@@ -9,6 +9,7 @@ export class BlogPerson{
 	userID: number;
 	name: string;
 	userPwd: string;
+	role: string;
 }
 
 export class BlogMessage{
